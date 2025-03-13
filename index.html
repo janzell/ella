@@ -18,14 +18,14 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: #6c9fc1;
             margin: 0;
+            background: url('1.jpg') center/cover no-repeat;
+            transition: background-image 1s ease-in-out;
         }
 
         .invite {
             width: 500px;
             height: 650px;
-            background: url('1.jpg') center/cover no-repeat;
             text-align: center;
             color: white;
             display: flex;
@@ -34,7 +34,6 @@
             padding: 20px;
             font-family: 'Montserrat', sans-serif;
             justify-content: space-between;
-            transition: background-image 1s ease-in-out;
         }
 
         .big-one {
@@ -122,7 +121,7 @@
 
     <script>
         function setRandomBackground() {
-            const invite = document.querySelector(".invite");
+            const invite = document.getElementsByTagName("body")[0];
             setTimeout(() => {
                 const randomNumber = Math.floor(Math.random() * 8) + 1;
                 invite.style.backgroundImage = `url('${randomNumber}.jpg')`;
@@ -149,6 +148,9 @@
 </head>
 
 <body>
+    <button class="play-button" onclick="toggleAudio()">
+        <i id="play-icon" class="fas fa-play"></i>
+    </button>
     <audio id="birthday-audio" loop>
         <source src="song.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -168,9 +170,7 @@
                 SATURDAY JULY 18 2PM 7752 KILLDEER COURT<br>
                 RSVP: 123.456.7890
             </div>
-            <button class="play-button" onclick="toggleAudio()">
-                <i id="play-icon" class="fas fa-play"></i>
-            </button>
+            
         </div>
     </div>
 </body>
