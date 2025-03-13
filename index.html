@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Invitation</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pacifico&Delius+Unicase:wght@400;700&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #6c9fc1;
+            margin: 0;
+        }
+
+        .invite {
+            width: 500px;
+            height: 650px;
+            background: url('1.jpg') center/cover no-repeat;
+            text-align: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            font-family: 'Montserrat', sans-serif;
+            justify-content: space-between;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .big-one {
+            font-family: 'Pacifico', cursive;
+            font-size: 60px;
+            text-transform: lowercase;
+            display: flex;
+            gap: 5%;
+            justify-content: center;
+        }
+
+        .one {
+            font-family: 'Delius Unicase', Courier, monospace;
+            font-size: 120px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: flex;
+        }
+
+        .details {
+            font-size: 12px;
+            text-transform: uppercase;
+            padding-bottom: 10px;
+        }
+
+        .space {
+            letter-spacing: 3px;
+            font-weight: bold;
+            font-size: 14px;
+            padding-bottom: 5px;
+        }
+
+        .save {
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #ff4081;
+            cursor: pointer;
+            background: #eed9d999;
+            border-radius: 18%;
+            padding: 7px;
+            transition: color 0.3s ease;
+        }
+
+        .play-button:hover {
+            color: #d81b60;
+        }
+
+        .dancing-text span {
+            display: inline-block;
+            animation: dance 1s infinite alternate ease-in-out;
+        }
+
+        @keyframes dance {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-40px);
+            }
+        }
+
+        .dancing-text span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .dancing-text span:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .dancing-text span:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+    </style>
+
+    <script>
+        function setRandomBackground() {
+            const invite = document.querySelector(".invite");
+            setTimeout(() => {
+                const randomNumber = Math.floor(Math.random() * 8) + 1;
+                invite.style.backgroundImage = `url('${randomNumber}.jpg')`;
+            }, 500);
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            setRandomBackground();
+            setInterval(setRandomBackground, 5000);
+        });
+        function toggleAudio() {
+            const audio = document.getElementById("birthday-audio");
+            const icon = document.getElementById("play-icon");
+            if (audio.paused) {
+                audio.play();
+                icon.classList.remove("fa-play");
+                icon.classList.add("fa-pause");
+            } else {
+                audio.pause();
+                icon.classList.remove("fa-pause");
+                icon.classList.add("fa-play");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <audio id="birthday-audio" loop>
+        <source src="song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="invite">
+        <div class="save">Save the date for</div>
+        <div>
+            <div class="big-one">big
+                <span class="one dancing-text">
+                    <span>O</span>
+                    <span>N</span>
+                    <span>E</span>
+                </span>
+            </div>
+            <div class="details">
+                <p class="space"> ELLA'S 1ST BIRTHDAY PARTY</p>
+                SATURDAY JULY 18 2PM 7752 KILLDEER COURT<br>
+                RSVP: 123.456.7890
+            </div>
+            <button class="play-button" onclick="toggleAudio()">
+                <i id="play-icon" class="fas fa-play"></i>
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>
