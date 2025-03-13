@@ -25,7 +25,7 @@
 
         .invite {
             width: 500px;
-            height: 650px;
+            height: 700px;
             text-align: center;
             color: white;
             display: flex;
@@ -54,7 +54,7 @@
         }
 
         .details {
-            font-size: 12px;
+            font-size: 14px;
             text-transform: uppercase;
             padding-bottom: 10px;
         }
@@ -62,7 +62,7 @@
         .space {
             letter-spacing: 3px;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 17px;
             padding-bottom: 5px;
         }
 
@@ -117,19 +117,62 @@
         .dancing-text span:nth-child(3) {
             animation-delay: 0.2s;
         }
+
+        .tooltip {
+            position: absolute;
+            top: 7px;
+            left: -90px;
+            transform: translateX(-50%);
+            background-color: black;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            animation: fadeOut 3s forwards 2s;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .d {
+        background: #aeabab17;
+    padding: 10px;
+    border-radius: 7px;
+    }
     </style>
 
     <script>
-        function setRandomBackground() {
-            const invite = document.getElementsByTagName("body")[0];
+
+        let currentImageIndex = 1;
+        const totalImages = 9; // Update this based on the number of images
+
+        function setBackgroundInOrder() {
+            const body = document.getElementsByTagName("body")[0];
+
             setTimeout(() => {
-                const randomNumber = Math.floor(Math.random() * 8) + 1;
-                invite.style.backgroundImage = `url('${randomNumber}.jpg')`;
+                body.style.backgroundImage = `url('${currentImageIndex}.jpg')`;
+
+                // Increment the index, and reset to 1 if it exceeds totalImages
+                currentImageIndex = (currentImageIndex % totalImages) + 1;
             }, 500);
         }
+
         document.addEventListener("DOMContentLoaded", function () {
-            setRandomBackground();
-            setInterval(setRandomBackground, 5000);
+            setBackgroundInOrder();
+            setInterval(setBackgroundInOrder, 5000);
         });
         function toggleAudio() {
             const audio = document.getElementById("birthday-audio");
@@ -149,6 +192,7 @@
 
 <body>
     <button class="play-button" onclick="toggleAudio()">
+        <div class="tooltip">Tap this to play sound</div>
         <i id="play-icon" class="fas fa-play"></i>
     </button>
     <audio id="birthday-audio" loop>
@@ -167,12 +211,12 @@
             </div>
             <div class="details">
                 <p class="space"> ELLA'S 1ST BIRTHDAY PARTY</p>
-                SATURDAY JULY 18 2PM 7752 KILLDEER COURT<br>
-                RSVP: 123.456.7890
+          <div class="d">
+                FRIDAY APRIL 4, 2025 4-5PM, Scarborough Seafoods Pala Pala Branch, <br> San Juan St, Bacolod, 6100 Negros Occidental <br>
+                RSVP: 09702956341
             </div>
-            
+            </div>
         </div>
     </div>
 </body>
-
 </html>
